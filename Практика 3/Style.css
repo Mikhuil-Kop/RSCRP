@@ -1,0 +1,41 @@
+body{
+    background-color:whitesmoke;
+    color:blue;
+}
+
+a{
+    color:red;
+}
+
+ol{
+    font-size:50pt;
+}
+
+table{
+    border-color:aqua;
+    border-style:dotted;
+}
+
+#container{
+    height: 400px;
+    width: 400px;
+}
+
+#box1{
+    width: 100px;
+	height: 100px;
+	background-color: blue;
+}
+
+
+#box2{
+    width: 100px;
+	height: 100px;
+	background-color: yellow;
+}
+
+#box3{
+    width: 100px;
+	height: 100px;
+	background-color: red;
+}
