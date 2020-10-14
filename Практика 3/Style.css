@@ -21,21 +21,40 @@ table{
     width: 400px;
 }
 
-#box1{
-    width: 100px;
-	height: 100px;
-	background-color: blue;
+
+
+#BoxPicture{
+position: relative;
+height: 300px;
+width: 300px;
 }
 
-
-#box2{
-    width: 100px;
-	height: 100px;
-	background-color: yellow;
+.Box{
+border:1px solid black;
+border-radius: 15%;
+height: 40%;
+width: 40%;
+position: absolute;
+margin: auto;
 }
 
-#box3{
-    width: 100px;
-	height: 100px;
-	background-color: red;
+#TopBox{
+background-color: azure;
+transform: rotate(45deg);
+top: 7%;
+left: 30%;
+}
+
+#LeftBox{
+background-color: yellow;
+transform: rotate(10deg);
+left: 5%;
+bottom: 8%;
+}
+
+#RightBox{
+background-color: brown;
+transform: rotate(-10deg);
+right: 5%;
+bottom: 8%;
 }
