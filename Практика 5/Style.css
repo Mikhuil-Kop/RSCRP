@@ -27,10 +27,10 @@ body{
 }
 
 .cell{
-    width: 10%;
-    height: 10%;
+    position: absolute;
     background-repeat: no-repeat;
     background-size: cover;
+    border-color: #00000000;
 }
 
 .alive{
@@ -39,8 +39,4 @@ body{
 
 .dead{
     background-image: url(dead.png);
-}
-
-.empty{
-    background-image: none;
 }

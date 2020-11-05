@@ -13,40 +13,55 @@
 Среди прочего использовать возможности, предоставляемые фреймворком jQuery.
 */
 
-//Массив чисел, оторбажающих клетки
+var osmos;
 var cells;
 var count = 0;
-var size = 10;
+var size = 30;
 
 $(function () {
-    //Инициализация
+    size = prompt("Введите размер поля", 10);
+    
     cells = new Array(size);
     for (var i = 0; i < size; i++) {
         cells[i] = new Array(size);
         for(var j = 0; j < size; j++){
-            cells[i][j] = 0;
-            $("#osmos").append("<img class='cell alive' id='"+idOf(i,j)+"'>");
-            $("#osmos").$(idOf(i,j)).toggleClass("dead");
-            //$("#osmos > #"+i+"|"+j).css("top", (100.0 * y / size) +'%');
-            //$("#"+i+"|"+j).css("left", (100.0 * x / size) +'%');
+            $("#osmos").append("<div class='cell' id='"+idOf(i,j)+"'>");
+            var c = new Cell($("#osmos").find("#" + idOf(i,j)));
+            c.element.css("top", (100.0 * i / size) +'%');
+            c.element.css("left", (100.0 * j / size) +'%');
+            c.element.css("height", (100.0 / size) +'%');
+            c.element.css("width", (100.0 / size) +'%');
+            
+            if(getRandomInt(10) > 6)
+                c.Spawn();
+            
+            cells[i][j] = c;
         }
     }
     
-    //Подключение update()
     setTimeout(update, 500);
 });
 
-//Функция обновления поколения
+
 function update(){
+    for(var i = 0; i < size; i++){
+        for(var j = 0; j < size; j++){
+            var c = cells[i][j];
+            var n = countNeighbors(i,j);
+            if(c.alive && (n < 2 || n > 4)){
+                c.Kill();
+            }
+            if(!c.alive && n == 3)
+                c.Spawn();
+        }
+    }
     
-    //счетчик
     count++;
     $("#counter").text(count);
-    //повторить через пол секунды
+    
     setTimeout(update, 500);
 }
 
-//Функция, считающая количество соседей рядом с клеткой
 function countNeighbors(x, y){
     var c = 0;
     
@@ -54,14 +69,41 @@ function countNeighbors(x, y){
         for(var j = -1; j <= 1; j++){
             var nx = x + i;
             var ny = y + j;
-            if(nx >= 0 && nx < size && ny >= 0 && ny < size && cells[nx][ny] == 1){
+            if(nx >= 0 && nx < size
+               && ny >= 0 && ny < size 
+               && i != 0 && j != 0
+               && cells[nx][ny].alive){
                 c = c + 1;
             }
         }
     }
-    return x + y;
+    return c;
 }
 
 function idOf(x,y){
-    return "(" + (x * size + y) + ")"
+    return "cell_" + (x * size + y);
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+class Cell {
+    constructor(element) {
+        this.element = element;
+        this.Kill();
+    }
+    
+    Spawn(){
+        this.alive = true;
+        this.element.removeClass("dead");
+        this.element.addClass("alive");
+    }
+    
+    Kill(){
+        this.alive = false;
+        this.element.removeClass("alive");
+        this.element.addClass("dead");
+    }
+
 }
