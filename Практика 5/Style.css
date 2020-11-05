@@ -1,0 +1,46 @@
+body{
+    background: #222222;
+}
+
+#counter{
+    position: absolute;
+    top: 1vh;
+    bottom: calc(51vh + 40vmin);
+    left: 0px;
+    right: 0px;
+    
+    text-align: center;
+    
+    font-size: calc(47vh - 40vmin);
+    color: #63635C;
+}
+
+
+#osmos{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vmin;
+    height: 80vmin;
+    margin: -40vmin 0 0 -40vmin;
+    background: #63635C;
+}
+
+.cell{
+    width: 10%;
+    height: 10%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.alive{
+    background-image: url(alive.png);
+}
+
+.dead{
+    background-image: url(dead.png);
+}
+
+.empty{
+    background-image: none;
+}
