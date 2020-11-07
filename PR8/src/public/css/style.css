@@ -1,0 +1,173 @@
+body{
+    margin: 0;
+    background-color: grey;
+}
+header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 2px solid gold;
+}
+header > a{
+    color: gold;
+    text-decoration: none;
+    font-size: 30px;
+    border-top: 2px solid gold;
+}
+header > a:hover{
+    color: orangered;
+}
+body > h1 {
+    margin-top: 40px;
+    color: gold;
+    text-align: center;
+}
+.controls__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.controls__wrapper > label, .matrix-field > label {
+    color: gold;
+    font-size: 20px;
+}
+.matrix-field > input {
+    background-color: darkgray;
+    color: gold;
+    border: 1px solid gold;
+}
+.controls__wrapper > * {
+    margin-top: 20px;
+}
+.button {
+    height: 43px;
+    width: 150px;
+    background-color: gray;
+    border: 1px solid gold;
+    color: gold;
+    font-size: 17px;
+    cursor: pointer;
+}
+.button:active {
+    background-color: darkgray;
+}
+.matrices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.matrices__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.matrices__wrapper > h1 {
+    color: gold;
+    border: 1px solid gold;
+    font-size: 30px;
+}
+.matrices__wrapper > span {
+    color: gold;
+    font-size: 20px;
+}
+
+/* Students */
+.student-table {
+    width: 100%;
+}
+.student__add {
+    margin-right: 10px;
+}
+.student-table__wrappper {
+    width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.student__columns {
+    display: flex;
+    border: 1px solid gold;
+    color: gold;
+}
+.column {
+    width: 190px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gold;
+    font-size: 20px;
+}
+.data-row {
+    width: 190px;
+    height: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gold;
+    color: gold;
+    font-size: 20px;
+}
+.student__data {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gold;
+}
+.student-data__row {
+    display: flex;
+    margin-top: 10px;
+}
+
+/* Popups */
+.popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.popup-func__name {
+    color: gold;
+}
+.popup__methods > label {
+    color: gold;
+    font-size: 20px;
+}
+.popup__methods > input {
+    background-color: darkgray;
+    color: gold;
+    border: 1px solid gold;
+}
+.popup__wrapper {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 70px;
+    background-color: gray;
+    border: 2px solid gold;
+}
+.popup__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.popup__methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.popup__methods > * {
+    margin-top: 10px;
+}
+.popup__buttons {
+    margin-top: 10px;
+}
+.row--delete {
+    position: relative;
+}

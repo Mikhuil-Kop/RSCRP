@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Таблица</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <header>
+            <a href="/about/">Обо мне</a>
+            <a href="/task/">Индивидуальное задание №14</a>
+            <a href="/table/">Таблица</a>  
+        </header> 
+        <section class="student-table">
+            <div class="student-table__wrappper">
+                <div class="student__add">
+                    <button class="button" id="add-student">Добавить</button>
+                </div>
+                <div class="student-table--data">
+                    <div class="student__columns">
+                        <div class="column column--delete">Удаление</div>
+                        <div class="column column--update">Изменение</div>
+                        <div class="column column--name">Имя</div>
+                        <div class="column column--lname">Фамилия</div>
+                        <div class="column column--mname">Отчество</div>
+                        <div class="column column--yofb">Курс</div>
+                    </div>
+                    <div class="student__data">
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <div class="popup" style="display: none;">
+        <div class="popup__wrapper">
+            <h1 class="popup-func__name"></h1>
+            <div class="popup__methods" data-popup-func-type="" data-pupop-student-id="">
+                <label for="student-name">Введите имя</label>
+                <input type="text" id="student-name" value="Михаил">
+                <label for="student-lname">Введите фамилию</label>
+                <input type="text" id="student-lname" value="Михайлов">
+                <label for="student-name">Введите отчество</label>
+                <input type="text" id="student-mname" value="Михайлович">
+                <label for="student-name">Введите курс обучения</label>
+                <input type="text" id="student-course" value="1 курс">
+                <div class="popup__buttons">
+                    <button class="button" id="popup-func">Добавить</button>
+                    <button class="button" id="popup-close">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</html>
