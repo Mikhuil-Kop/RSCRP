@@ -2,37 +2,37 @@ body{
     margin: 0;
     background-color: black;
     font-family: sans-serif;
+    font-size: 15px;
+    color: green;
 }
 header {
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: start;
     border-bottom: 2px solid green;
 }
 header > a{
     color: green;
     text-decoration: none;
-    font-size: 30px;
+    margin: 10px;
 }
 header > a:hover{
     color: greenyellow;
 }
 body > h1 {
-    margin-top: 40px;
+    margin-top: 10px;
     color: green;
-    text-align: center;
 }
 .controls__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.controls__wrapper > label, .matrix-field > label {
+.controls__wrapper > label, .calc-field > label {
     color: green;
-    font-size: 20px;
 }
-.matrix-field > input {
+.calc-field > input {
     background-color: #111;
     color: green;
     border: 1px solid green;
@@ -41,12 +41,11 @@ body > h1 {
     margin-top: 20px;
 }
 .button {
-    height: 43px;
-    width: 150px;
+    height: 25px;
+    width: 120px;
     background-color: black;
     border: 1px solid green;
     color: green;
-    font-size: 17px;
     cursor: pointer;
 }
 .button:active {
@@ -65,59 +64,55 @@ body > h1 {
 .matrices__wrapper > h1 {
     color: green;
     border: 1px solid green;
-    font-size: 30px;
 }
 .matrices__wrapper > span {
     color: green;
-    font-size: 20px;
 }
 
-/* Students */
-.student-table {
+/* Robots */
+.robot-table {
     width: 100%;
 }
-.student__add {
+.robot__add {
     margin-right: 10px;
 }
-.student-table__wrappper {
+.robot-table__wrappper {
     width: 1440px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.student__columns {
+.robot__columns {
     display: flex;
     border: 1px solid green;
     color: green;
 }
 .column {
-    width: 190px;
-    height: 50px;
+    width: 150px;
+    height: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 1px solid green;
-    font-size: 20px;
 }
 .data-row {
-    width: 190px;
-    height: 65px;
+    width: 150px;
+    height: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: 1px solid green;
     color: green;
-    font-size: 20px;
 }
-.student__data {
+.robot__data {
     display: flex;
     flex-direction: column;
     border: 1px solid green;
 }
-.student-data__row {
+.robot-data__row {
     display: flex;
     margin-top: 10px;
 }
@@ -132,13 +127,7 @@ body > h1 {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
 }
-.popup-func__name {
-    color: green;
-}
-.popup__methods > label {
-    color: green;
-    font-size: 20px;
-}
+
 .popup__methods > input {
     background-color: #111;
     color: green;

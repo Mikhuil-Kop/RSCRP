@@ -1,77 +1,90 @@
 $(document).ready(function () {
-    // Task
-
-    function renderMatrices(response) {
-        $('body').append(
-            `<section class="matrices"><div class="matrices__wrapper"></div></section>`
-        );
-        console.log(response);
-        response.forEach(matrix => {
-            let matrixBody = `<h1>${matrix.matrixName}</h1>`;
-            matrix.values.forEach(matrixValues => {
-                let matrixRow = '';
-                matrixValues.forEach(matrixItem => {
-                    matrixRow += matrixItem.toString() + ' ';
-                });
-                matrixBody += `<span>${matrixRow}</span>`;
-            });
-            $('.matrices').append(`<div class="matrices__wrapper">${matrixBody}</div>`);
-        });
-    }
-
-    $('#clear-matrices').click(function () {
-        $('section.matrices').remove();
+        // Popups
+    $('#popup-func').click(function () {
+        let funcType = $('.popup__methods').data('popup-func-type');
+        let robotID = $('.popup__methods').data('pupop-robot-id');
+        if(funcType == 'add'){
+            addRobotRecord();
+        }
+        else if (funcType == 'update'){
+            updateRobotRecord(robotID);
+        }
+    });
+    
+    $('#add-robot').click(function () {
+        $('.popup-func__name').text('Добавить робота');
+        $('#popup-func').text('Добавить');
+        $('.popup__methods').data('popup-func-type', 'add');
+        $('.popup').css('display', 'block');
     });
 
-    $('#send-matrices').click(function () {
+    $('.robot__data').on('click', '.record-update', function () {
+        $('.popup-func__name').text('Обновить данные робота');
+        $('#popup-func').text('Обновить');
+        $('.popup__methods').data('popup-func-type', 'update');
+        $('.popup').css('display', 'block');
+        $('.popup__methods').data('pupop-robot-id', $(this).parents('.robot-data__row').data('robot-id'));
+    });
+
+    $('.robot__data').on('click', '.record-delete', function () {
+        let robotID = $(this).parents('.robot-data__row').data('robot-id');
+        deleteRobotRecord(robotID);
+    });
+
+    $('#popup-close').click(popupClose);
+    
+    // Task
+    $('#send-calc').click(function () {
+        console.log("Нажата кнопка 'Рассчитать'");
+        
         $.get({
             headers: {
                 Accept: 'application/json'
             },
             type: 'GET',
-            url: "/api/?func=mtrcombine",
+            url: "/api/?func=calc",
             data: {
-                'matrix1': $('#matrix-first').val(),
-                'matrix2': $('#matrix-second').val()
+                'calc-a': $('#calc-a').val(),
+                'calc-b': $('#calc-b').val(),
+                'calc-s': $('#calc-sign').val()
             },
             success: function(data) {
-                if($('body').has('.matrices')){
-                    $('section.matrices').remove();
-                }
-                renderMatrices(data);
+                console.log(data);
+                $('#calc-answ').text(data);
             },
             error: function (e) {
                 console.log(e);
+                $('#calc-answ').text("Ошибка");
             }
         });
     });
 
     // Table
-    getStudentData();
+    getRobotData();
 
     function popupClose() {
         $('.popup').css('display', 'none');
     }
 
-    function loadStudentTable(response) {
+    function loadRobotTable(response) {
         response = JSON.parse(response);
         response.forEach(responseElem => {
-            $('.student__data').append(
-                `<div class="student-data__row" data-student-id="${responseElem.ID}">` +
+            $('.robot__data').append(
+                `<div class="robot-data__row" data-robot-id="${responseElem.ID}">` +
                     `<div class="data-row row--delete"><button class="button record-delete">Удалить</button></div>` +
                     `<div class="data-row row--update"><button class="button record-update">Изменить</button></div>` +
                     `<div class="data-row row--name">${responseElem.name}</div>` +
-                    `<div class="data-row row--lname">${responseElem.lastName}</div>` +
-                    `<div class="data-row row--mname">${responseElem.middleName}</div>` +
-                    `<div class="data-row row--yofb">${responseElem.course}</div>` +
+                    `<div class="data-row row--lname">${responseElem.description}</div>` +
+                    `<div class="data-row row--mname">${responseElem.skill1}</div>` +
+                    `<div class="data-row row--yofb">${responseElem.skill2}</div>` +
                 `</div>` 
             );
         });
     }
 
-    function getStudentData() {
-        clearStudentTable();
-        let studentsData;
+    function getRobotData() {
+        clearRobotTable();
+        let robotsData;
         $.ajax({
             headers: {
                 Accept: 'application/json'
@@ -82,21 +95,21 @@ $(document).ready(function () {
                 'mode': 'get',
             },
             complete: function (data) {
-                loadStudentTable(data.responseText);
+                loadRobotTable(data.responseText);
             }
         });
         
     }
 
-    function clearStudentTable() {
-        $('.student-data__row').remove();
+    function clearRobotTable() {
+        $('.robot-data__row').remove();
     }
 
-    function addStudentRecord() {
-        let studentName = $('#student-name').val();
-        let studentLName = $('#student-lname').val();
-        let studentMName = $('#student-mname').val();
-        let studentСourse = $('#student-course').val();
+    function addRobotRecord() {
+        let name = $('#robot-name').val();
+        let description = $('#robot-description').val();
+        let skill1 = $('#robot-skill1').val();
+        let skill2 = $('#robot-skill2').val();
         $.ajax({
             headers: {
                 Accept: 'application/json'
@@ -105,37 +118,36 @@ $(document).ready(function () {
             url: "/api/?func=table",
             data: {
                 'mode': 'add',
-                'fname': studentName,
-                'lname': studentLName,
-                'mname': studentMName,
-                'course': studentСourse
+                'name': name,
+                'description': description,
+                'skill1': skill1,
+                'skill2': skill2
             },
             success: function (data) {
                 popupClose();
-                getStudentData();
+                getRobotData();
             }
         });
 
     }
 
-    function updateStudentRecord(studentID) {
-        let newStudentData = {};
+    function updateRobotRecord(robotID) {
+        let newRobotData = {};
+        
+        newRobotData['mode'] = 'update';
+        newRobotData['id'] = robotID;
 
-        //http://localhost:8080/api/?func=table&mode=update&id=1&name=Ivan&lname=Ivanov&mname=Ivanovich&yob=2000
-        newStudentData['mode'] = 'update';
-        newStudentData['id'] = studentID;
-
-        if($('#student-name').val() != ''){
-            newStudentData['fname'] = $('#student-name').val();
+        if($('#robot-name').val() != ''){
+            newRobotData['name'] = $('#robot-name').val();
         }
-        if($('#student-lname').val() != ''){
-            newStudentData['lname'] = $('#student-lname').val();
+        if($('#robot-desc').val() != ''){
+            newRobotData['desc'] = $('#robot-desc').val();
         }
-        if($('#student-mname').val() != ''){
-            newStudentData['mname'] = $('#student-mname').val();
+        if($('#robot-skill1').val() != ''){
+            newRobotData['skill1'] = $('#robot-skill1').val();
         }
-        if($('#student-course').val() != ''){
-            newStudentData['course'] = $('#student-course').val();
+        if($('#robot-skill2').val() != ''){
+            newRobotData['skill2'] = $('#robot-skill2').val();
         }
 
         $.ajax({
@@ -144,17 +156,17 @@ $(document).ready(function () {
             },
             type: 'GET',
             url: "/api/?func=table",
-            data: newStudentData,
+            data: newRobotData,
             success: function (data) {
                 console.log(data);
                 popupClose();
-                getStudentData();
+                getRobotData();
             },
         });
 
     }
 
-    function deleteStudentRecord(studentID) {
+    function deleteRobotRecord(robotID) {
         $.ajax({
             headers: {
                 Accept: 'application/json'
@@ -163,46 +175,12 @@ $(document).ready(function () {
             url: "/api/?func=table",
             data: {
                 'mode': 'delete',
-                'id': studentID
+                'id': robotID
             },
             success: function () {
-                getStudentData();
+                getRobotData();
             },
         });
 
     }
-
-    // Popups
-    $('#popup-func').click(function () {
-        let funcType = $('.popup__methods').data('popup-func-type');
-        let studentID = $('.popup__methods').data('pupop-student-id');
-        if(funcType == 'add'){
-            addStudentRecord();
-        }
-        else if (funcType == 'update'){
-            updateStudentRecord(studentID);
-        }
-    });
-    
-    $('#add-student').click(function () {
-        $('.popup-func__name').text('Добавить студента');
-        $('#popup-func').text('Добавить');
-        $('.popup__methods').data('popup-func-type', 'add');
-        $('.popup').css('display', 'block');
-    });
-
-    $('.student__data').on('click', '.record-update', function () {
-        $('.popup-func__name').text('Обновить данные студента');
-        $('#popup-func').text('Обновить');
-        $('.popup__methods').data('popup-func-type', 'update');
-        $('.popup').css('display', 'block');
-        $('.popup__methods').data('pupop-student-id', $(this).parents('.student-data__row').data('student-id'));
-    });
-
-    $('.student__data').on('click', '.record-delete', function () {
-        let studentID = $(this).parents('.student-data__row').data('student-id');
-        deleteStudentRecord(studentID);
-    });
-
-    $('#popup-close').click(popupClose);
 });

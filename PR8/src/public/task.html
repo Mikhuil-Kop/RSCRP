@@ -15,19 +15,25 @@
         </header> 
         <section class="controls">
             <div class="controls__wrapper">
-                <label for="matrix-first">Напишите матрицы, значения через ',', строки ';':</label>
-                <div class="matrix-field">
-                    <label for="matrix-first">Матрица 1:</label>
-                    <input id="matrix-first" type="text" value="1,2,3,4;1,2,3,4;1,2,3,4;1,2,3,4;">
+                <div class="calc-field">
+                    <label for="calc-a">A:</label>
+                    <input id="calc-a" type="text" value="1">
                 </div>
-                <div class="matrix-field">
-                    <label for="matrix-second">Матрица 2:</label>
-                    <input id="matrix-second" type="text" value="5,6,7,8;5,6,7,8;5,6,7,8;5,6,7,8;">
+                <div class="calc-field">
+                    <label for="calc-sign">Знак:</label>
+                    <input id="calc-sign" type="text" value="+">
                 </div>
-                <div class="matrix-controls">
-                    <button class="button" id="send-matrices">Отправить матрицы</button>
-                    <button class="button" id="clear-matrices">Очистить результат</button>  
-                </div> 
+                <div class="calc-field">
+                    <label for="calc-b">Б:</label>
+                    <input id="calc-b" type="text" value="2">
+                </div>
+                <div class="calc-button">
+                    <button class="button" id="send-calc">Рассчитать</button>
+                </div>
+                
+                <div id="calc-answ">
+                    Ответ будет тут.
+                </div>
             </div>
         </section>
     </body>

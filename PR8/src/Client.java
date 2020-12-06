@@ -12,16 +12,8 @@ public class Client implements Runnable {
         this.clientSocket = clientSocket;
     }
 
-    public String getPagesPath () {
-        File file = new File("Result");
-        String pagesPath = file.getAbsolutePath();
-        pagesPath = pagesPath.substring(0, pagesPath.lastIndexOf('\\') + 1);
-        return pagesPath + "src/public/";
-    }
-
     public String getPage(String pageName) {
-        String filePath = getPagesPath() + pageName;
-        getPagesPath();
+        String filePath =  "/Users/mikekopotov/Desktop/РКСП/PR8/src/public/" + pageName;
         String pageData = "";
         try {
             pageData = Files.readString(Paths.get(filePath));
@@ -33,49 +25,51 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
+        //Инициализация
         BufferedReader inStream;
         PrintWriter headerPrintWriter;
         BufferedWriter outDataStream;
         try {
             inStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String request = inStream.readLine().split(" ")[1].substring(1);
-            if (!request.equals("") && !request.contains("?") && !request.contains("css") && !request.contains("js")){
+            System.out.println("Запрос: " + request);
+            //обрезать запрос типа '8080/about/'
+            if (!request.equals("") && !request.contains("?") && !request.contains("css") && !request.contains("js"))
                 request = request.substring(0, request.length() - 1);
-            }
-            String currentPage = getPage("index.html");
-            String restResponse = "";
+
+            String currentPage = "";
             String contentType = "";
+            String restResponse = "";
             boolean isRestUsed = false;
 
+            //Форматирование запроса
             if(!request.contains("api")){
-                contentType = "Content-type: text/html; charset=utf-8";
-                switch (request) {
-                    case "about":
-                        currentPage = getPage("about.html");
-                        break;
-                    case "task":
-                        currentPage = getPage("task.html");
-                        break;
-                    case "table":
-                        currentPage = getPage("table.html");
-                        break;
-                    default:
-                        currentPage = getPage("index.html");
-                        break;
-                }
                 if(request.contains(".css")) {
-                    System.out.println(request);
                     request = request.substring(request.indexOf("css"));
-                    System.out.println(request);
                     currentPage = getPage(request);
                     contentType = "Content-type: text/css";
                 }
                 else if(request.contains(".js")){
-                    System.out.println(request);
                     request = request.substring(request.indexOf("js"));
-                    System.out.println(request);
                     currentPage = getPage(request);
                     contentType = "Content-type: text/javascript";
+                }
+                else {
+                    switch (request) {
+                        case "about":
+                            currentPage = getPage("about.html");
+                            break;
+                        case "task":
+                            currentPage = getPage("task.html");
+                            break;
+                        case "table":
+                            currentPage = getPage("table.html");
+                            break;
+                        default:
+                            currentPage = getPage("index.html");
+                            break;
+                    }
+                    contentType = "Content-type: text/html; charset=utf-8";
                 }
             }
             else{
@@ -85,6 +79,7 @@ public class Client implements Runnable {
                 isRestUsed = true;
             }
 
+            //передача клиенту
             headerPrintWriter = new PrintWriter(clientSocket.getOutputStream());
             outDataStream = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
@@ -96,16 +91,18 @@ public class Client implements Runnable {
             headerPrintWriter.println();
             headerPrintWriter.flush();
 
+            System.out.println("Итоговый запрос: " + request);
+
             if(!isRestUsed){
+                System.out.println("Отправлен: файл");
                 outDataStream.write(currentPage);
                 outDataStream.flush();
             }
             else{
+                System.out.println("Отправлено: " + restResponse);
                 outDataStream.write(restResponse);
                 outDataStream.flush();
             }
-
-            System.out.println("Отправлен " + request);
 
             inStream.close();
             headerPrintWriter.close();
