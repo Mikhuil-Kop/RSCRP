@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Задание №13</title>
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="/about/">Обо мне</a>
+            <a href="/task/">Индивидуальное задание №13</a>
+            <a href="/table/">Таблица</a>  
+        </header> 
+        <section class="controls">
+            <div class="controls__wrapper">
+                <label for="matrix-first">Напишите матрицы, значения через ',', строки ';':</label>
+                <div class="matrix-field">
+                    <label for="matrix-first">Матрица 1:</label>
+                    <input id="matrix-first" type="text" value="1,2,3,4;1,2,3,4;1,2,3,4;1,2,3,4;">
+                </div>
+                <div class="matrix-field">
+                    <label for="matrix-second">Матрица 2:</label>
+                    <input id="matrix-second" type="text" value="5,6,7,8;5,6,7,8;5,6,7,8;5,6,7,8;">
+                </div>
+                <div class="matrix-controls">
+                    <button class="button" id="send-matrices">Отправить матрицы</button>
+                    <button class="button" id="clear-matrices">Очистить результат</button>  
+                </div> 
+            </div>
+        </section>
+    </body>
+</html>

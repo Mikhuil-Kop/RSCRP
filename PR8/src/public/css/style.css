@@ -1,26 +1,26 @@
 body{
     margin: 0;
-    background-color: grey;
+    background-color: black;
+    font-family: sans-serif;
 }
 header {
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-evenly;
-    border-bottom: 2px solid gold;
+    border-bottom: 2px solid green;
 }
 header > a{
-    color: gold;
+    color: green;
     text-decoration: none;
     font-size: 30px;
-    border-top: 2px solid gold;
 }
 header > a:hover{
-    color: orangered;
+    color: greenyellow;
 }
 body > h1 {
     margin-top: 40px;
-    color: gold;
+    color: green;
     text-align: center;
 }
 .controls__wrapper {
@@ -29,13 +29,13 @@ body > h1 {
     align-items: center;
 }
 .controls__wrapper > label, .matrix-field > label {
-    color: gold;
+    color: green;
     font-size: 20px;
 }
 .matrix-field > input {
-    background-color: darkgray;
-    color: gold;
-    border: 1px solid gold;
+    background-color: #111;
+    color: green;
+    border: 1px solid green;
 }
 .controls__wrapper > * {
     margin-top: 20px;
@@ -43,14 +43,14 @@ body > h1 {
 .button {
     height: 43px;
     width: 150px;
-    background-color: gray;
-    border: 1px solid gold;
-    color: gold;
+    background-color: black;
+    border: 1px solid green;
+    color: green;
     font-size: 17px;
     cursor: pointer;
 }
 .button:active {
-    background-color: darkgray;
+    color: greenyellow;
 }
 .matrices {
     display: flex;
@@ -63,12 +63,12 @@ body > h1 {
     align-items: center;
 }
 .matrices__wrapper > h1 {
-    color: gold;
-    border: 1px solid gold;
+    color: green;
+    border: 1px solid green;
     font-size: 30px;
 }
 .matrices__wrapper > span {
-    color: gold;
+    color: green;
     font-size: 20px;
 }
 
@@ -88,8 +88,8 @@ body > h1 {
 }
 .student__columns {
     display: flex;
-    border: 1px solid gold;
-    color: gold;
+    border: 1px solid green;
+    color: green;
 }
 .column {
     width: 190px;
@@ -98,7 +98,7 @@ body > h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid gold;
+    border: 1px solid green;
     font-size: 20px;
 }
 .data-row {
@@ -108,14 +108,14 @@ body > h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid gold;
-    color: gold;
+    border: 1px solid green;
+    color: green;
     font-size: 20px;
 }
 .student__data {
     display: flex;
     flex-direction: column;
-    border: 1px solid gold;
+    border: 1px solid green;
 }
 .student-data__row {
     display: flex;
@@ -133,24 +133,24 @@ body > h1 {
     background-color: rgba(0, 0, 0, 0.8);
 }
 .popup-func__name {
-    color: gold;
+    color: green;
 }
 .popup__methods > label {
-    color: gold;
+    color: green;
     font-size: 20px;
 }
 .popup__methods > input {
-    background-color: darkgray;
-    color: gold;
-    border: 1px solid gold;
+    background-color: #111;
+    color: green;
+    border: 1px solid green;
 }
 .popup__wrapper {
     width: 400px;
     height: 400px;
     margin: 0 auto;
     margin-top: 70px;
-    background-color: gray;
-    border: 2px solid gold;
+    background-color: black;
+    border: 2px solid green;
 }
 .popup__wrapper {
     display: flex;
