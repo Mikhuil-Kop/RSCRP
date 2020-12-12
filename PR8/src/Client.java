@@ -31,7 +31,9 @@ public class Client implements Runnable {
         BufferedWriter outDataStream;
         try {
             inStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            String request = inStream.readLine().split(" ")[1].substring(1);
+            String str = inStream.readLine();
+            System.out.println("-: " + str);
+            String request = str.split(" ")[1].substring(1);
             System.out.println("Запрос: " + request);
             //обрезать запрос типа '8080/about/'
             if (!request.equals("") && !request.contains("?") && !request.contains("css") && !request.contains("js"))

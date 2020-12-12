@@ -68,6 +68,7 @@ $(document).ready(function () {
 
     function loadRobotTable(response) {
         response = JSON.parse(response);
+        console.log(response);
         response.forEach(responseElem => {
             $('.robot__data').append(
                 `<div class="robot-data__row" data-robot-id="${responseElem.ID}">` +

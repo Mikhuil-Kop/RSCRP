@@ -50,7 +50,7 @@ $(document).ready(function () {
             },
             success: function(data) {
                 console.log(data);
-                $('#calc-answ').text("asd");
+                $('#calc-answ').text(data);
             },
             error: function (e) {
                 console.log(e);
@@ -68,6 +68,7 @@ $(document).ready(function () {
 
     function loadRobotTable(response) {
         response = JSON.parse(response);
+        console.log(response);
         response.forEach(responseElem => {
             $('.robot__data').append(
                 `<div class="robot-data__row" data-robot-id="${responseElem.ID}">` +

@@ -5,7 +5,7 @@ public class Server {
 
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(8085);
+            ServerSocket serverSocket = new ServerSocket(8081);
             System.out.println("Сервер запущен на порту 8080!");
             while (true) {
                 Client client = new Client(serverSocket.accept());
