@@ -41,7 +41,7 @@ public class Client implements Runnable {
 
             String currentPage = "";
             String contentType = "";
-            String restResponse = "";
+            String functionsResponse = "";
             boolean isRestUsed = false;
 
             //Форматирование запроса
@@ -76,8 +76,8 @@ public class Client implements Runnable {
             }
             else{
                 contentType = "Content-type: application/json; charset=utf-8";
-                Rest rest = new Rest(request);
-                restResponse = rest.getResponse();
+                Functions functions = new Functions(request);
+                functionsResponse = functions.getResponse();
                 isRestUsed = true;
             }
 
@@ -101,8 +101,8 @@ public class Client implements Runnable {
                 outDataStream.flush();
             }
             else{
-                System.out.println("Отправлено: " + restResponse);
-                outDataStream.write(restResponse);
+                System.out.println("Отправлено: " + functionsResponse);
+                outDataStream.write(functionsResponse);
                 outDataStream.flush();
             }
 

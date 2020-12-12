@@ -3,13 +3,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
-public class Rest {
+public class Functions {
     private String query;
     private String func;
 
     private static RobotsTable robotsTable = new RobotsTable();
 
-    public Rest(String request) {
+    public Functions(String request) {
         String query = request.substring(request.indexOf("?") + 1);
         this.query = query;
         if(query.contains("&")){

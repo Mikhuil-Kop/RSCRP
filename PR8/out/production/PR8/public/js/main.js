@@ -141,8 +141,8 @@ $(document).ready(function () {
         if($('#robot-name').val() != ''){
             newRobotData['name'] = $('#robot-name').val();
         }
-        if($('#robot-desc').val() != ''){
-            newRobotData['desc'] = $('#robot-desc').val();
+        if($('#robot-description').val() != ''){
+            newRobotData['description'] = $('#robot-description').val();
         }
         if($('#robot-skill1').val() != ''){
             newRobotData['skill1'] = $('#robot-skill1').val();

@@ -44,8 +44,8 @@ body > h1 {
     height: 25px;
     width: 120px;
     background-color: black;
-    border: 1px solid green;
-    color: green;
+    border: 0px solid green;
+    color: white;
     cursor: pointer;
 }
 .button:active {
@@ -79,8 +79,7 @@ body > h1 {
 .robot-table__wrappper {
     width: 1440px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: row;
+
     justify-content: center;
 }
 .robot__columns {
