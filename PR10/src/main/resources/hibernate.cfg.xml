@@ -15,6 +15,6 @@
         <property name="hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
 
-        <mapping class="src.Robot"/>
+        <mapping class="Robot"/>
     </session-factory>
 </hibernate-configuration>
